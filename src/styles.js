@@ -4,6 +4,20 @@ const styles = theme => ({
       backgroundColor: theme.palette.common.white,
     },
   },
+  container: {
+    top: '25%',
+    left: 0,
+    right: 0,
+    position: 'absolute'
+  },
+  noMatchMessage : {
+    width: '100%',
+    textAlign : 'center'
+  },
+  noMatchLink : {
+    marginTop: theme.spacing(5),
+    fontSize: 20
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',

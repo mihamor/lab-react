@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom'
 import React, { Component } from 'react';
 
 import Home from '../Home/Home';
+import NoMatch from './NoMatch';
 import Login from '../Login/Login';
 import { withRouter } from 'react-router-dom';
 import { compareUsers } from '../utils';
@@ -37,27 +38,7 @@ class MainRouter extends Component{
             path="/home"
             render={props => <Home user={this.state.user}/>}
             />
-            {/* <Route path='/profile' render={props => <Redirect to={path_to_user}/>}/>
-            <Route path='/developer/v3' component={ApiInfo}/>
-            {/*
-            <Route path='/admin_menu' render={props => <AdminMenu user={this.state.user}/>}/>
-            <Route 
-            path ='/tracks'
-            render={props => <TracksRoute user={this.state.user} socket={this.socket}/>}
-            />
-            <Route 
-            path ='/users'
-            render={props => <UsersRoute user={this.state.user}/>}
-            />
-            <Route 
-            path ='/playlists'
-            render={props => <PlaylistsRoute user={this.state.user}/>}
-            />
-            <Route 
-            path='/auth' 
-            render={props => <Auth match='/auth'/>}
-            />
-            <Route component={NoMatch} /> */} */}
+            <Route component={NoMatch} />
           </Switch>
         </main>
     );

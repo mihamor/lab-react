@@ -6,7 +6,6 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import App from './App/App';
-import './index.css';
 import rootReducer from './reducers/reducers';
 import { fetchInitialAuth } from './actions/auth';
 
