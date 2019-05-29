@@ -35,6 +35,15 @@ export function receiveInitialAuth(user, err) {
   }
 }
 
+export const LOGOUT = 'LOGOUT';
+export function logout() {
+  cookie.remove('username', { path: '/' })
+  return {
+    type : LOGOUT
+  }
+}
+
+
 function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }

@@ -2,9 +2,9 @@ import {
   REQUEST_LOGIN,
   RECEIVE_LOGIN,
   RECEIVE_INITIAL_AUTH,
-  REQUEST_INITIAL_AUTH
+  REQUEST_INITIAL_AUTH,
+  LOGOUT
 } from '../actions/auth';
-
 
 const initialState = {
   loginData : null,
@@ -36,6 +36,10 @@ function login(state = initialState, action) {
         loggedInUser : action.loggedInUser,
         isFetchingInitialAuth : false
       })
+    case LOGOUT:
+      return Object.assign({}, state, {
+        loggedInUser : null
+      })
     default:
       return state;
   }
@@ -47,6 +51,7 @@ switch (action.type) {
   case RECEIVE_LOGIN:
   case RECEIVE_INITIAL_AUTH:
   case REQUEST_INITIAL_AUTH:
+  case LOGOUT:
     return login(state, action);
   default:
     return state;

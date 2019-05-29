@@ -11,28 +11,10 @@ import '../style.css';
 class MainRouter extends Component{
   constructor () {
     super()
-    // this.onLogin = this.onLogin.bind(this);
-    // this.onLogout = this.onLogout.bind(this);
     this.state = {
       user : null
     };
   }
-  // componentDidMount() {
-  //   this.setState({
-  //      user: { username : cookie.load('username') }       
-  //   });
-  // }
- 
-  // onLogin(username) {
-  //   this.setState({
-  //     user: { username }       
-  //   });
-  //   cookie.save('username', username, { path: '/' })
-  // }
-
-  // onLogout() {
-  //   cookie.remove('username', { path: '/' })
-  // }
 
   static getDerivedStateFromProps(nextProps, prevState){
     if(nextProps.user && !compareUsers(nextProps.user, prevState.user)){

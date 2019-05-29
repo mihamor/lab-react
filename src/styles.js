@@ -50,6 +50,15 @@ const styles = theme => ({
   windIcon:{
     height: 20,
     float: 'left'
-  }
+  },
+  appBar: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  toolbarTitle: {
+    flexGrow: 1,
+  },
 });
 export default styles;
