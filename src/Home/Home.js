@@ -7,12 +7,16 @@ import styles from '../styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFetchingWeather : props.isFetchingWeather,
+      isFetchingWeather : true,
       user : props.user,
       weatherData : props.weatherData,
       error : props.error
@@ -46,8 +50,11 @@ class Home extends Component {
   
   render() {
     const classes = this.props.classes;
+
+    
+
     if(!this.state.user) return <Redirect to="/" />
-    else if(this.state.isFetchingWeather) 
+    else if(this.state.isFetchingWeather || !this.state.weatherData) 
       return (
         <React.Fragment>
           <Container maxWidth="xs">
@@ -60,9 +67,36 @@ class Home extends Component {
           </Container>
         </React.Fragment>
       );
-    else return (
-    <div className="home">
-    </div>);
+    else {
+      const weatherList = this.state.weatherData.consolidated_weather;
+      return (
+      <Container className={classes.cardGrid} maxWidth="md">
+        <Grid container spacing={4}>
+          {weatherList.map(weather => (
+            <Grid item key={weather.id} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={`https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`}
+                  title="Weather icon"
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {weather.weather_state_name}
+                  </Typography>
+                  <Typography>
+                    {/* https://www.metaweather.com/static/img/windarrow.svg */}
+                      Max: {weather.max_temp} °C
+                      <br/>
+                      Min: {weather.min_temp} °C
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>);
+    }
   }
 } 
 

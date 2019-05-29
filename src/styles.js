@@ -11,6 +11,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   progress: {
+
     marginTop: theme.spacing(20),
     marginBottom : theme.spacing(5)
   },
@@ -28,5 +29,21 @@ const styles = theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    // paddingTop: '56.25%', // 16:9
+    height: 300
+  },
+  cardContent: {
+    flexGrow: 1,
+  }
 });
-export default styles;
+export defalt styles;
