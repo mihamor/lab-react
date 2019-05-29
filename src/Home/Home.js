@@ -76,6 +76,7 @@ class Home extends Component {
             <Grid item key={weather.id} xs={12} sm={6} md={4}>
               <Card className={classes.card}>
                 <CardMedia
+                  component="img"
                   className={classes.cardMedia}
                   image={`https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`}
                   title="Weather icon"
@@ -86,9 +87,16 @@ class Home extends Component {
                   </Typography>
                   <Typography>
                     {/* https://www.metaweather.com/static/img/windarrow.svg */}
-                      Max: {weather.max_temp} °C
+                      Max: {Math.round(weather.max_temp)} °C
                       <br/>
-                      Min: {weather.min_temp} °C
+                      Min: {Math.round(weather.min_temp)} °C
+                      <br/>
+                      <img src="https://www.metaweather.com/static/img/windarrow.svg"
+                        style={ { transform: `rotate(${weather.wind_direction}deg)` }} 
+                        title={weather.wind_direction_compass}
+                        alt="Wind direction"
+                        className={classes.windIcon}/>
+                        {`${Math.round(weather.wind_speed)}mph`}
                   </Typography>
                 </CardContent>
               </Card>
@@ -116,7 +124,6 @@ const mapStateToProps = (state) => {
     user : state.auth.loggedInUser
   }
 };
-
 
 
 export default connect(

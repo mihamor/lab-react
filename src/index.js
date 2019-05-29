@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './App/App';
 import './index.css';
 import rootReducer from './reducers/reducers';
+import { fetchInitialAuth } from './actions/auth';
 
 
 const loggerMiddleware = createLogger();
@@ -18,6 +19,7 @@ const store = createStore(
     loggerMiddleware // neat middleware that logs actions
   )
 );
+store.dispatch(fetchInitialAuth());
 
 ReactDOM.render((
   <Provider store={store}>

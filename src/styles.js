@@ -39,11 +39,17 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    // paddingTop: '56.25%', // 16:9
-    height: 300
+    // height: 0,
+    // paddingTop: '56.25%', // 16:9,
+    // width: 200
+    padding: '5%'
   },
   cardContent: {
     flexGrow: 1,
+  },
+  windIcon:{
+    height: 20,
+    float: 'left'
   }
 });
-export defalt styles;
+export default styles;
