@@ -43,8 +43,7 @@ class Login extends Component {
         user: nextProps.user,
         isFetchingAuth: nextProps.isFetchingAuth 
       };
-    }
-    if(nextProps.isFetchingAuth !== prevState.isFetchingAuth){
+    }else if(nextProps.isFetchingAuth !== prevState.isFetchingAuth){
       return { isFetchingAuth: nextProps.isFetchingAuth };
     }
     return null;
