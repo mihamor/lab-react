@@ -108,10 +108,8 @@ class Login extends Component {
       </Typography>);
     };
     
-    if(this.state.user) {
-      // this.onSuccess();
+    if(this.state.user)
       return <Redirect to="/home"/>;
-    }
     else if(this.state.isFetchingAuth) 
       return (
         <React.Fragment>
