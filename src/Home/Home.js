@@ -19,53 +19,23 @@ import Button from '@material-ui/core/Button';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isFetchingWeather : true,
-      user : props.user,
-      weatherData : props.weatherData,
-      error : props.error
-    };
     this.getWeatherData = props.getWeatherData;
     this.onLogout = this.onLogout.bind(this);
     this.doLogout = props.doLogout;
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.weatherData && nextProps.weatherData !== prevState.weatherData){
-      console.log(nextProps.weatherData);
-      return { 
-        weatherData : nextProps.weatherData,
-        user : nextProps.user ? nextProps.user : prevState.user,
-        isFetchingWeather : nextProps.isFetchingWeather 
-      };
-    } else if(nextProps.isFetchingWeather !== prevState.isFetchingWeather){
-      return { 
-        isFetchingWeather: nextProps.isFetchingWeather,
-        error : nextProps.error
-      };
-    } else if(nextProps.user !== prevState.user)
-      return {
-        user: nextProps.user
-      };
-    else return null;
   }
   onLogout(){
     this.doLogout();
   }
 
-
   componentDidMount(){
-    if(this.getWeatherData && this.state.user) this.getWeatherData();
+    if(this.getWeatherData && this.props.user) this.getWeatherData();
   }
 
-  
   render() {
     const classes = this.props.classes;
 
-    
-
-    if(!this.state.user) return <Redirect to="/" />
-    else if(this.state.isFetchingWeather || !this.state.weatherData) 
+    if(!this.props.user) return <Redirect to="/" />
+    else if(this.props.isFetchingWeather || !this.props.weatherData) 
       return (
         <React.Fragment>
           <Container maxWidth="xs">
@@ -79,14 +49,14 @@ class Home extends Component {
         </React.Fragment>
       );
     else {
-      const weatherList = this.state.weatherData.consolidated_weather;
+      const weatherList = this.props.weatherData.consolidated_weather;
       return (
       <React.Fragment>
         <div className={classes.appBar}>
           <AppBar position="static">
             <Toolbar>
               <Typography variant="h6" className={classes.toolbarTitle}>
-                Welcome back, {this.state.user.username}!
+                Welcome back, {this.props.user.username}!
               </Typography>
               <Button color="inherit" onClick={this.onLogout}>Logout</Button>
             </Toolbar>
@@ -108,16 +78,16 @@ class Home extends Component {
                       {weather.weather_state_name}
                     </Typography>
                     <Typography>
-                        Max: {Math.round(weather.max_temp)} °C
-                        <br/>
-                        Min: {Math.round(weather.min_temp)} °C
-                        <br/>
-                        <img src="https://www.metaweather.com/static/img/windarrow.svg"
-                          style={ { transform: `rotate(${weather.wind_direction}deg)` }} 
-                          title={weather.wind_direction_compass}
-                          alt="Wind direction"
-                          className={classes.windIcon}/>
-                          {`${Math.round(weather.wind_speed)}mph`}
+                      Max: {Math.round(weather.max_temp)} °C
+                      <br/>
+                      Min: {Math.round(weather.min_temp)} °C
+                      <br/>
+                      <img src="https://www.metaweather.com/static/img/windarrow.svg"
+                        style={ { transform: `rotate(${weather.wind_direction}deg)` }} 
+                        title={weather.wind_direction_compass}
+                        alt="Wind direction"
+                        className={classes.windIcon}/>
+                        {`${Math.round(weather.wind_speed)}mph`}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -149,7 +119,6 @@ const mapStateToProps = (state) => {
     user : state.auth.loggedInUser
   }
 };
-
 
 export default connect(
   mapStateToProps,

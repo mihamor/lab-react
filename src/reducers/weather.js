@@ -3,7 +3,6 @@ import {
   RECEIVE_WEATHER
 } from '../actions/weather';
 
-
 const initialState = {
   weatherData : null,
   error : null,
@@ -27,7 +26,6 @@ function weather(state = initialState, action) {
       return state;
   }
 }
-
 
 function combinedReducer(state = initialState, action){
 switch (action.type) {

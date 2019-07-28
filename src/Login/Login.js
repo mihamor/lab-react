@@ -8,11 +8,9 @@ import Cloud from '@material-ui/icons/Cloud';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
-import { compareUsers } from '../utils';
 import { fetchLogin } from '../actions/auth';
 import { Redirect } from 'react-router-dom';
 import styles from '../styles';
-
 
 class Login extends Component {
   constructor(props) {
@@ -24,9 +22,7 @@ class Login extends Component {
       formErrors: {username: '', password: ''},
       usernameValid: false,
       passwordValid: false,
-      formValid: false,
-      user : props.user,
-      isFetchingAuth : props.isFetchingAuth
+      formValid: false
     };
 
     this.doLogin = props.doLogin;
@@ -36,19 +32,6 @@ class Login extends Component {
     this.validateForm = this.validateForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  static getDerivedStateFromProps(nextProps, prevState){
-    if(nextProps.user && !compareUsers(nextProps.user, prevState.user)){
-      return { 
-        user: nextProps.user,
-        isFetchingAuth: nextProps.isFetchingAuth 
-      };
-    }else if(nextProps.isFetchingAuth !== prevState.isFetchingAuth){
-      return { isFetchingAuth: nextProps.isFetchingAuth };
-    }
-    return null;
-  }
-
 
   handleSubmit(event) {
     event.preventDefault();
@@ -107,9 +90,9 @@ class Login extends Component {
       </Typography>);
     };
     
-    if(this.state.user)
+    if(this.props.user)
       return <Redirect to="/home"/>;
-    else if(this.state.isFetchingAuth) 
+    else if(this.props.isFetchingAuth) 
       return (
         <React.Fragment>
           <Container maxWidth="xs">

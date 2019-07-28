@@ -21,14 +21,9 @@ class NoMatch extends Component {
             Click here to sign in
           </Link>
         </div>
-        
         </Container>
       </React.Fragment>);
   }
 } 
-
-
-
-
 
 export default withStyles(styles)(NoMatch);

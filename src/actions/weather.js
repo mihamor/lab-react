@@ -18,7 +18,6 @@ export function receiveWeather(weatherData, err) {
   }
 }
 
-
 export function fetchWeather() {
   const reqOptions = {
     mode : "cors"

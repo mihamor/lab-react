@@ -13,8 +13,6 @@ const initialState = {
   isFetchingInitialAuth : false,
 };
 
-
-
 function login(state = initialState, action) {
   switch (action.type) {
     case REQUEST_LOGIN:
